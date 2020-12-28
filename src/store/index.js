@@ -55,7 +55,7 @@ export default new Vuex.Store({
           });
       });
     },
-    
+
     logout({ commit }) {
       return new Promise((resolve) => {
         commit("logout");
@@ -64,6 +64,25 @@ export default new Vuex.Store({
         resolve();
       });
     },
+
+    parking({ commit }) {
+      return new Promise((resolve, reject) => {
+        axios({
+          url: `${mainurl}/administrator/api/v1/parkings`,
+          method: 'GET'
+        }).then((resp) => {
+          commit("auth_success", resp.data.data)
+          resolve()
+        })
+          .catch((error) => {
+            if (error.response.status == 401) {
+              localStorage.removeItem("token");
+              delete axios.defaults.headers.common["Authorization"];
+            }
+            reject(err);
+          });
+      })
+    }
   },
   modules: {
   },

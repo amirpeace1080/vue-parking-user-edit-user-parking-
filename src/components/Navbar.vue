@@ -27,7 +27,13 @@
 
       <div id="navbarBasicExample" class="navbar-menu" dir="ltr">
         <div class="navbar-start">
-          <a class="navbar-item"> Home </a>
+
+          <div class="control navbar-item ml-5">
+            <span class="icon" @click="logout">
+              <i class="fa fa-sign-out fa-2x fa-flip-horizontal"></i>
+            </span>
+          </div>
+
         </div>
 
         <div class="navbar-end">
@@ -67,7 +73,20 @@
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      
+    }
+  },
+  methods: {
+    logout(){
+      this.$store.dispatch("logout").then(()=>{
+        this.$router.push('/login')
+      })
+    }
+  },
+};
 </script>
 
 <style>
