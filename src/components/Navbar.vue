@@ -1,6 +1,6 @@
 <template>
-  <div class="card">
-    <nav class="card-body navbar" role="navigation" dir="rtl">
+  <div class="card mb-3">
+    <nav class="card-body navbar" role="navigation" dir="rtl" style="height:65px">
       <div class="navbar-brand" dir="ltr">
         <router-link to="/" class="navbar-item">
           <img
@@ -28,7 +28,7 @@
       <div id="navbarBasicExample" class="navbar-menu" dir="ltr">
         <div class="navbar-start">
 
-          <div class="control navbar-item ml-5">
+          <div class="control navbar-item ml-3">
             <span class="icon" @click="logout">
               <i class="fa fa-sign-out fa-2x fa-flip-horizontal"></i>
             </span>
