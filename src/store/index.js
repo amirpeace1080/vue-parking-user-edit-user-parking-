@@ -32,28 +32,28 @@ export default new Vuex.Store({
     },
   },
   actions: {
-    login({ commit }, user) {
-      return new Promise((resolve, reject) => {
-        commit("auth_request")
+    login({commit}, user){
+      return new Promise((resolve, reject)=>{
+        commit("auth_request");
         axios({
           url: `${mainurl}/administrator/api/v1/login`,
           data: user,
           method: "POST",
         })
-          .then((resp) => {
-            const token = resp.data.token
-            localStorage.setItem("token", token)
-            axios.defaults.headers.common["Authorization"] = `Bearer${token}`
-            commit("auth_success", token)
-            resolve(resp)
-          })
-          .catch((err) => {
-            commit("auth_error");
-            localStorage.clear();
-            delete axios.defaults.headers.common["Authorization"];
-            reject(err);
-          });
-      });
+        .then((resp) => {
+          const token = resp.data.token;
+          localStorage.setItem("token", token);
+          axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+          commit("auth_success", token);
+          resolve(resp);
+        })
+        .catch((err) => {
+          commit("auth_error");
+          localStorage.clear();
+          delete axios.defaults.headers.common["Authorization"];
+          reject(err);
+        });
+      })
     },
 
     logout({ commit }) {
@@ -65,15 +65,16 @@ export default new Vuex.Store({
       });
     },
 
+
     users({ commit }) {
       return new Promise((resolve, reject) => {
         axios({
           url: `${mainurl}/administrator/api/v1/users`,
-          method: 'GET'
+          method: "GET",
         })
           .then((resp) => {
-            commit("auth_success", resp.data.data)
-            resolve(resp)
+            commit("auth_success", resp.data.data);
+            resolve(resp);
           })
           .catch((err) => {
             if (err.response.status == 401) {
@@ -82,13 +83,27 @@ export default new Vuex.Store({
             }
             reject(err);
           });
+      });
+    },
+
+    parking({commit}){
+      return new Promise ((resolve, reject) =>{
+        axios({
+          url: `${mainurl}/administrator/api/v1/parkings`,
+          method: 'GET'
+        }).then((resp)=>{
+          commit("auth_success", resp.data.data);
+          resolve(resp);
+        })
+        .catch((err)=>{
+          if(err.response.status == 401){
+            localStorage.removeItem("token");
+            delete axios.defaults.headers.common["Authorization"];
+          }
+          reject(err);
+        })
       })
     }
   },
-  modules: {},
-  getters: {
-    isLoggedIn: (state) => !!state.token,
-    authStatus: (state) => state.status,
-    users: (state) => state.usersData
-  }
+  getters: {}
 })

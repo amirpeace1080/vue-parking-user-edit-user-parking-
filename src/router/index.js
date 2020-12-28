@@ -5,6 +5,7 @@ import store from '../store'
 import Home from '../views/Home.vue'
 import Login from '../views/Login.vue'
 import Parking from '../views/Parking'
+import EditParking from '../views/EditParking'
 import Users from '../views/Users'
 
 Vue.use(VueRouter)
@@ -33,6 +34,11 @@ const routes = [
     meta: {
       requiresAuth: true,
     },
+  },
+  {
+    path: '/editParking',
+    name: 'EditParking',
+    component: EditParking
   },
   {
     path: '/users',

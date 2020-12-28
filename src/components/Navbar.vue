@@ -28,7 +28,7 @@
       <div id="navbarBasicExample" class="navbar-menu" dir="ltr">
         <div class="navbar-start">
 
-          <div class="control navbar-item ml-3">
+          <div class="control navbar-item ml-3 mouse">
             <span class="icon" @click="logout">
               <i class="fa fa-sign-out fa-2x fa-flip-horizontal"></i>
             </span>
@@ -92,5 +92,9 @@ export default {
 <style>
 .router-link-exact-active{
     color: black;
+}
+
+.mouse{
+  cursor: pointer;
 }
 </style>
