@@ -68,8 +68,8 @@
       </div>
 
       <p class="control mb-5">
-        <button class="button mr-3 is-success">ذخیره</button>
-        <button class="button is-danger">لغو</button>
+        <button class="button mr-3 is-success is-rounded">ذخیره</button>
+        <button class="button is-danger is-rounded">لغو</button>
       </p>
       
     </div>
